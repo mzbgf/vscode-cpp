@@ -9,9 +9,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Workflow Run ID
+        id: get_id
+        run: |
+          response=$(curl https://api.github.com/repos/mzbgf/vscode-cpp/actions/runs)
+          id=$(echo $response |  cut -d' ' -f8 | cut -d',' -f1)
+          echo $id
+          echo "::set-output name=id::$id"
+
       - name: Checkout code
         uses: actions/checkout@v3
-        id: get_id
 
       - name: Create zip file
         run: zip -r release.zip ./.vscode 
@@ -34,6 +41,6 @@ jobs:
           name: Release ${{ github.ref }}
           publish: true
           prerelease: false
-          body: |
+          header: |
             Download the release [here](${{ steps.get_url.outputs.stdout }})!
             ${{ steps.get_url.outputs.stdout }}
