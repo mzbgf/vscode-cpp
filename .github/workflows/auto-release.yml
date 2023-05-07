@@ -31,7 +31,7 @@ jobs:
           path: release.zip
 
       - name: Get zip file link
-        run: echo "https://github.com/${{ github.repository_owner }}/${{ github.repository }}/actions/runs/${{ steps.get_id.outputs.id }}"
+        run: echo "https://github.com/${{ github.repository }}/actions/runs/${{ steps.get_id.outputs.id }}"
         id: get_url  # 给步骤一个 ID
         
       - name: Create Release
@@ -44,3 +44,5 @@ jobs:
           header: |
             Download the release [here](${{ steps.get_url.outputs.stdout }})!
             ${{ steps.get_url.outputs.stdout }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
