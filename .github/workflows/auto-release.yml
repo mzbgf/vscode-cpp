@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Push 
 
 on:
   push:
@@ -10,18 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Create release zip
+      - name: Create zip file
         run: zip -r release.zip ./.vscode 
 
-      - name: Create Release and Upload Release Asset
-        uses: softprops/action-gh-release@v1
+      - name: Upload zip file
+        uses: actions/upload-artifact@v3
         with:
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
-          body: New release
-          draft: false
-          prerelease: false
-          files: |
-            release.zip
+          name: release
+          path: release.zip
