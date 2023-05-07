@@ -1,0 +1,6 @@
+{
+    "C_Cpp.default.compilerPath": "c:\\Program Files\\RedPanda-Cpp\\MinGW64\\bin\\g++.exe",
+    "files.exclude": {
+        "**/debug": true
+    }
+}
