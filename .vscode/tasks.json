@@ -8,7 +8,7 @@
                 "--input-charset=UTF-8",
                 "--exec-charset=GB2312",
                 "-fdiagnostics-color=always",
-                "-g",
+                "-O2",
                 "${file}",
                 "-o",
                 "${fileDirname}\\debug\\${fileBasenameNoExtension}.exe"
